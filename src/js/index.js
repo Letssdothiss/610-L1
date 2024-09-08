@@ -6,3 +6,9 @@
  */
 
 import './greeting/greeting.js'
+
+// Create a new instance of the greeting component.
+const greeting = document.createElement('greeting')
+
+// Append component to the DOM.
+document.body.appendChild(greeting)
