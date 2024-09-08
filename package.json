@@ -2,14 +2,19 @@
   "name": "Software Quality Assignment - L1",
   "version": "1.0.0",
   "description": "The first assignment of the software quality course.",
-  "main": "index.js",
   "type": "module",
+  "browser": "src/js/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview",
+    "lint": "npx eslint ./src || exit 0",
+    "lint:fix": "npx eslint ./src --fix || exit 0"
   },
   "keywords": [],
   "author": "Emil Jonasson Östvall <ej224jt>",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@lnu/eslint-config": "^1.1.10",
     "vite": "^5.4.2"
