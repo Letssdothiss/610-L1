@@ -1,0 +1,17 @@
+{
+  "name": "Software Quality Assignment - L1",
+  "version": "1.0.0",
+  "description": "The first assignment of the software quality course.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Emil Jonasson Östvall <ej224jt>",
+  "license": "ISC",
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.10",
+    "vite": "^5.4.2"
+  }
+}
