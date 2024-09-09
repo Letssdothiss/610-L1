@@ -14,17 +14,19 @@ template.innerHTML = `
     display: none;
   }
 </style>
-<h2>Hello!</h2>
-<p>Please enter your name so I can greet you properly.</p>
-<input type="text" id="name" placeholder="Your name goes here!">
-<button id="greet-button">Greet me!</button>
+  <form id="name-form">
+    <h2>Hello!</h2>
+    <p>Please enter your name so I can greet you properly.</p>
+    <input type="text" id="name" placeholder="Your name goes here!">
+    <button id="greet-button">Greet me!</button>
+  </form>
 <div id="greeting-container">
   <h2 id="greeting-message"></h2>
   <p id="quote"></p>
 </div>
 `
 
-customElements.define('my-component',
+customElements.define('greeting-component',
 /**
  * Represents the greeting component.
  */
@@ -57,7 +59,7 @@ customElements.define('my-component',
      * Fetch a greeting message from the Fun Translations API.
      *
      * @param {string} name - The name to greet.
-     * @returns {String} The translated greeting or the default greeting.
+     * @returns {string} The translated greeting or the default greeting.
      */
     async fetchGreeting (name) {
       try {
@@ -73,7 +75,7 @@ customElements.define('my-component',
     /**
      * Fetch a quote from the Quotable API.
      *
-     * @returns {String} The quote or a default message.
+     * @returns {string} The quote or a default message.
      */
     async fetchQuote () {
       try {
@@ -87,10 +89,21 @@ customElements.define('my-component',
     }
 
     /**
+     * Hide the name-form.
+     */
+    hideForm () {
+      this.shadowRoot.querySelector('#name-form').style.display = 'none'
+    }
+
+    /**
      * Display a greeting message and a random quote.
      */
     greeting () {
+      // Get the name from the input field.
       const name = this.shadowRoot.querySelector('#name').value
+
+      // Hide the name-form.
+      this.hideForm()
     }
   }
 )
