@@ -40,18 +40,53 @@ customElements.define('my-component',
     }
 
     /**
-     * Fetch a greeting message from the Fun Translations API.
+     * Called when the component is connected to the DOM.
      */
-    fetchGreeting () {}
+    connectedCallback () {
+      this.shadowRoot.querySelector('#greet-button').addEventListener('click', () => this.greeting())
+    }
+
+    /**
+     * Called when the component is disconnected from the DOM.
+     */
+    disconnectedCallback () {
+      this.shadowRoot.querySelector('#greet-button').removeEventListener('click', () => this.greeting())
+    }
+
+    /**
+     * Fetch a greeting message from the Fun Translations API.
+     *
+     * @param {string} name - The name to greet.
+     * @returns {String} something.
+     */
+    async fetchGreeting (name) {
+      try {
+
+      } catch (error) {
+        console.error('Error fetching greeting: ', error)
+        return `Hello, ${name}!`
+      }
+    }
 
     /**
      * Fetch a quote from the Quotable API.
+     *
+     * @returns {String} something.
      */
-    fetchQuote () {}
+    async fetchQuote () {
+      try {
+
+      } catch (error) {
+        console.error('Error fetching quote: ', error)
+        return 'Have a great day!'
+      }
+    }
 
     /**
      * Display a greeting message and a random quote.
      */
-    greeting () {}
+    greeting () {
+      const name = this.shadowRoot.querySelector('#name').value
+    }
   }
 )
