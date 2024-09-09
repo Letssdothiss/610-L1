@@ -21,7 +21,10 @@ template.innerHTML = `
     <button type="button" id="greet-button">Greet me!</button>
   </form>
 <div id="greeting-container">
-  <h2 id="greeting-message"></h2>
+  <p id="greeting-message"></p>
+  <p id="imageText">Here is an image of a fox to brighten your day!</p>
+  <img id="foxImg" src="" alt="Fox image">
+  <p id="quoteText">And here is a quote to inspire you!</p>
   <p id="quote"></p>
 </div>
 `
@@ -56,19 +59,15 @@ customElements.define('greeting-component',
     }
 
     /**
-     * Fetch a greeting message from the Fun Translations API.
+     * Fetch an image of a fox using the randomFox API.
      *
-     * @param {string} name - The name to greet.
-     * @returns {string} The translated greeting or the default greeting.
+     * 
      */
-    async fetchGreeting (name) {
+    async fetchFoxImage () {
       try {
-        const response = await fetch(`https://api.funtranslations.com/translate/greetings.json?text=Hello, ${name}!`)
-        const data = await response.json()
-        return data.contents.translated
+
       } catch (error) {
-        console.error('Error fetching greeting: ', error)
-        return `Hello, ${name}!`
+
       }
     }
 
@@ -98,7 +97,7 @@ customElements.define('greeting-component',
     /**
      * Display a greeting message and a random quote.
      */
-    greeting () {
+    async greeting () {
       // Get the name from the input field.
       const name = this.shadowRoot.querySelector('#name').value
 
@@ -106,11 +105,11 @@ customElements.define('greeting-component',
       this.hideForm()
 
       // Fetch greeting and quote.
-      const greetingMessage = this.fetchGreeting(name)
-      const quote = this.fetchQuote()
+      const foxImage = await this.fetchFoxImage()
+      const quote = await this.fetchQuote()
 
       // Display greeting and quote.
-      this.shadowRoot.querySelector('#greeting-message').textContent = greetingMessage
+      this.shadowRoot.querySelector('#greeting-message').textContent = `Hello, ${name}!`
       this.shadowRoot.querySelector('#quote').textContent = quote
       this.shadowRoot.querySelector('#greeting-container').style.display = 'block'
     }
