@@ -9,11 +9,19 @@
  */
 const template = document.createElement('template')
 template.innerHTML = `
-<style></style>
+<style>
+  #greeting-container {
+    display: none;
+  }
+</style>
 <h2>Hello!</h2>
 <p>Please enter your name so I can greet you properly.</p>
 <input type="text" id="name" placeholder="Your name goes here!">
-<button id="greet">Greet me!</button>
+<button id="greet-button">Greet me!</button>
+<div id="greeting-container">
+  <h2 id="greeting-message"></h2>
+  <p id="quote"></p>
+</div>
 `
 
 customElements.define('my-component',
@@ -30,5 +38,20 @@ customElements.define('my-component',
       this.attachShadow({ mode: 'open' })
         .appendChild(template.content.cloneNode(true))
     }
+
+    /**
+     * Fetch a greeting message from the Fun Translations API.
+     */
+    fetchGreeting () {}
+
+    /**
+     * Fetch a quote from the Quotable API.
+     */
+    fetchQuote () {}
+
+    /**
+     * Display a greeting message and a random quote.
+     */
+    greeting () {}
   }
 )
