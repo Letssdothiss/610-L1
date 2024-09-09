@@ -12,6 +12,46 @@ template.innerHTML = `
 <style>
   #greeting-container {
     display: none;
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  #name-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  #name {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(204, 204, 204, 1);
+    border-radius: 5px;
+    width: 200px;
+  }
+
+  #greet-button {
+    padding: 10px 20px;
+    background-color: rgba(255, 126, 95, 1);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+
+  #greet-button:hover {
+    background-color: rgba(254, 180, 123, 1);
+  }
+
+  #foxImg {
+    max-width: 100%;
+    height: auto;
+    margin-top: 20px;
+  }
+
+  p {
+    font-weight: bold;
   }
 </style>
   <form id="name-form">
@@ -24,6 +64,7 @@ template.innerHTML = `
   <p id="greeting-message"></p>
   <p id="imageText">Here is an image of a fox to brighten your day!</p>
   <img id="foxImg" src="" alt="Fox image">
+  <p>Isn't it cute?</p>
   <p>Have a great day!</p>
 </div>
 `
