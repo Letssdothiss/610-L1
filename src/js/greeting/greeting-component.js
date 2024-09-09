@@ -24,8 +24,7 @@ template.innerHTML = `
   <p id="greeting-message"></p>
   <p id="imageText">Here is an image of a fox to brighten your day!</p>
   <img id="foxImg" src="" alt="Fox image">
-  <p id="quoteText">And here is a quote to inspire you!</p>
-  <p id="quote"></p>
+  <p>Have a great day!</p>
 </div>
 `
 
@@ -61,29 +60,16 @@ customElements.define('greeting-component',
     /**
      * Fetch an image of a fox using the randomFox API.
      *
-     * 
+     * @returns {string} The URL of the image or an empty string.
      */
     async fetchFoxImage () {
       try {
-
-      } catch (error) {
-
-      }
-    }
-
-    /**
-     * Fetch a quote from the Quotable API.
-     *
-     * @returns {string} The quote or a default message.
-     */
-    async fetchQuote () {
-      try {
-        const response = await fetch('https://api.quotable.io/random')
+        const response = await fetch('https://randomfox.ca/floof/')
         const data = await response.json()
-        return data.content
+        return data.image
       } catch (error) {
-        console.error('Error fetching quote: ', error)
-        return 'Have a great day!'
+        console.error('Error fetching fox image: ', error)
+        return ''
       }
     }
 
@@ -95,7 +81,7 @@ customElements.define('greeting-component',
     }
 
     /**
-     * Display a greeting message and a random quote.
+     * Display a greeting message and fox image.
      */
     async greeting () {
       // Get the name from the input field.
@@ -104,13 +90,12 @@ customElements.define('greeting-component',
       // Hide the name-form.
       this.hideForm()
 
-      // Fetch greeting and quote.
+      // Fetch fox image.
       const foxImage = await this.fetchFoxImage()
-      const quote = await this.fetchQuote()
 
-      // Display greeting and quote.
+      // Display greeting and fox image.
       this.shadowRoot.querySelector('#greeting-message').textContent = `Hello, ${name}!`
-      this.shadowRoot.querySelector('#quote').textContent = quote
+      this.shadowRoot.querySelector('#foxImg').src = foxImage
       this.shadowRoot.querySelector('#greeting-container').style.display = 'block'
     }
   }
