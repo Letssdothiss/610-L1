@@ -18,7 +18,7 @@ template.innerHTML = `
     <h2>Hello!</h2>
     <p>Please enter your name so I can greet you properly.</p>
     <input type="text" id="name" placeholder="Your name goes here!">
-    <button id="greet-button">Greet me!</button>
+    <button type="button" id="greet-button">Greet me!</button>
   </form>
 <div id="greeting-container">
   <h2 id="greeting-message"></h2>
@@ -104,6 +104,15 @@ customElements.define('greeting-component',
 
       // Hide the name-form.
       this.hideForm()
+
+      // Fetch greeting and quote.
+      const greetingMessage = this.fetchGreeting(name)
+      const quote = this.fetchQuote()
+
+      // Display greeting and quote.
+      this.shadowRoot.querySelector('#greeting-message').textContent = greetingMessage
+      this.shadowRoot.querySelector('#quote').textContent = quote
+      this.shadowRoot.querySelector('#greeting-container').style.display = 'block'
     }
   }
 )
