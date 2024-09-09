@@ -57,11 +57,13 @@ customElements.define('my-component',
      * Fetch a greeting message from the Fun Translations API.
      *
      * @param {string} name - The name to greet.
-     * @returns {String} something.
+     * @returns {String} The translated greeting or the default greeting.
      */
     async fetchGreeting (name) {
       try {
-
+        const response = await fetch(`https://api.funtranslations.com/translate/greetings.json?text=Hello, ${name}!`)
+        const data = await response.json()
+        return data.contents.translated
       } catch (error) {
         console.error('Error fetching greeting: ', error)
         return `Hello, ${name}!`
@@ -71,11 +73,13 @@ customElements.define('my-component',
     /**
      * Fetch a quote from the Quotable API.
      *
-     * @returns {String} something.
+     * @returns {String} The quote or a default message.
      */
     async fetchQuote () {
       try {
-
+        const response = await fetch('https://api.quotable.io/random')
+        const data = await response.json()
+        return data.content
       } catch (error) {
         console.error('Error fetching quote: ', error)
         return 'Have a great day!'
